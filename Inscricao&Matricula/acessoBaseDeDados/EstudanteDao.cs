@@ -47,25 +47,11 @@ namespace Inscricao_Matricula.acessoBaseDeDados
 
                 int estudanteID = Convert.ToInt32(cmd.ExecuteScalar());
 
-                // Atualizar o CursoID do estudante com o curso fornecido
-                AtualizarCursoEstudante(estudanteID, cursoID);
+                
+                
             }
         }
 
-        private void AtualizarCursoEstudante(int estudanteID, int cursoID)
-        {
-            using (var connection = conexao.AbrirConexao())
-            {
-                string updateQuery = @"UPDATE estudantes 
-                                      SET CursoID = @CursoID 
-                                      WHERE EstudanteID = @EstudanteID";
-
-                MySqlCommand cmd = new MySqlCommand(updateQuery, connection);
-                cmd.Parameters.AddWithValue("@CursoID", cursoID);
-                cmd.Parameters.AddWithValue("@EstudanteID", estudanteID);
-
-                cmd.ExecuteNonQuery();
-            }
-        }
+        
     }
 }

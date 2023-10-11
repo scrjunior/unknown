@@ -36,13 +36,15 @@
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.PainelControl = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2Panel1
             // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(35)))), ((int)(((byte)(179)))));
+            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(0)))), ((int)(((byte)(112)))));
+            this.guna2Panel1.Controls.Add(this.guna2Button1);
             this.guna2Panel1.Controls.Add(this.guna2ImageButton1);
             this.guna2Panel1.Controls.Add(this.guna2Button2);
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
@@ -78,12 +80,15 @@
             this.guna2Button2.Font = new System.Drawing.Font("Yu Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.guna2Button2.ForeColor = System.Drawing.Color.White;
             this.guna2Button2.Image = global::Inscricao_Matricula.Properties.Resources.write;
+            this.guna2Button2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button2.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button2.Location = new System.Drawing.Point(28, 239);
+            this.guna2Button2.Location = new System.Drawing.Point(19, 285);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(133, 38);
+            this.guna2Button2.Size = new System.Drawing.Size(175, 38);
             this.guna2Button2.TabIndex = 2;
             this.guna2Button2.Text = "Matrícula";
+            this.guna2Button2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2HtmlLabel1
             // 
@@ -110,15 +115,17 @@
             this.inscricao.Font = new System.Drawing.Font("Yu Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.inscricao.ForeColor = System.Drawing.Color.White;
             this.inscricao.Image = global::Inscricao_Matricula.Properties.Resources.edit;
+            this.inscricao.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.inscricao.ImageSize = new System.Drawing.Size(30, 30);
             this.inscricao.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.inscricao.IndicateFocus = true;
-            this.inscricao.Location = new System.Drawing.Point(28, 179);
+            this.inscricao.Location = new System.Drawing.Point(19, 179);
             this.inscricao.Name = "inscricao";
             this.inscricao.PressedColor = System.Drawing.Color.Transparent;
-            this.inscricao.Size = new System.Drawing.Size(133, 38);
+            this.inscricao.Size = new System.Drawing.Size(175, 38);
             this.inscricao.TabIndex = 1;
             this.inscricao.Text = "Inscrição";
+            this.inscricao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.inscricao.Click += new System.EventHandler(this.inscricao_Click);
             // 
             // guna2ControlBox1
@@ -134,7 +141,7 @@
             // 
             // PainelControl
             // 
-            this.PainelControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(20)))), ((int)(((byte)(107)))));
+            this.PainelControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(57)))), ((int)(((byte)(112)))));
             this.PainelControl.Location = new System.Drawing.Point(200, 61);
             this.PainelControl.Name = "PainelControl";
             this.PainelControl.Size = new System.Drawing.Size(1080, 659);
@@ -142,7 +149,7 @@
             // 
             // guna2Panel3
             // 
-            this.guna2Panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(35)))), ((int)(((byte)(179)))));
+            this.guna2Panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(0)))), ((int)(((byte)(112)))));
             this.guna2Panel3.Controls.Add(this.guna2ControlBox1);
             this.guna2Panel3.CustomBorderColor = System.Drawing.Color.LightGray;
             this.guna2Panel3.CustomBorderThickness = new System.Windows.Forms.Padding(-1, 0, 0, 0);
@@ -157,6 +164,27 @@
             this.guna2Panel3.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(50, 5, 5, 5);
             this.guna2Panel3.Size = new System.Drawing.Size(1080, 63);
             this.guna2Panel3.TabIndex = 2;
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BorderRadius = 5;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.Font = new System.Drawing.Font("Yu Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.Image = global::Inscricao_Matricula.Properties.Resources.write;
+            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button1.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button1.Location = new System.Drawing.Point(19, 232);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(175, 38);
+            this.guna2Button1.TabIndex = 3;
+            this.guna2Button1.Text = "Estudantes";
+            this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // Form1
             // 
@@ -187,6 +215,7 @@
         private Guna.UI2.WinForms.Guna2Panel PainelControl;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }
 

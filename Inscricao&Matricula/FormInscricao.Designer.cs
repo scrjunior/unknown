@@ -85,6 +85,7 @@
             // 
             // apelido
             // 
+            this.apelido.BorderRadius = 5;
             this.apelido.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.apelido.DefaultText = "";
             this.apelido.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -120,6 +121,7 @@
             // facul
             // 
             this.facul.BackColor = System.Drawing.Color.Transparent;
+            this.facul.BorderRadius = 5;
             this.facul.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.facul.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.facul.FillColor = System.Drawing.SystemColors.Control;
@@ -140,6 +142,7 @@
             // grauc
             // 
             this.grauc.BackColor = System.Drawing.Color.Transparent;
+            this.grauc.BorderRadius = 5;
             this.grauc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.grauc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.grauc.FillColor = System.Drawing.SystemColors.Control;
@@ -172,6 +175,7 @@
             // turno
             // 
             this.turno.BackColor = System.Drawing.Color.Transparent;
+            this.turno.BorderRadius = 5;
             this.turno.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.turno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.turno.FillColor = System.Drawing.SystemColors.Control;
@@ -201,6 +205,7 @@
             // 
             // nome
             // 
+            this.nome.BorderRadius = 5;
             this.nome.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nome.DefaultText = "";
             this.nome.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -235,6 +240,7 @@
             // 
             // paisNasc
             // 
+            this.paisNasc.BorderRadius = 5;
             this.paisNasc.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.paisNasc.DefaultText = "";
             this.paisNasc.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -259,6 +265,7 @@
             // dataNasc
             // 
             this.dataNasc.Animated = true;
+            this.dataNasc.BorderRadius = 5;
             this.dataNasc.Checked = true;
             this.dataNasc.FillColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataNasc.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -295,6 +302,7 @@
             // 
             // provNasc
             // 
+            this.provNasc.BorderRadius = 5;
             this.provNasc.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.provNasc.DefaultText = "";
             this.provNasc.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -329,6 +337,7 @@
             // 
             // localNasc
             // 
+            this.localNasc.BorderRadius = 5;
             this.localNasc.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.localNasc.DefaultText = "";
             this.localNasc.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -353,6 +362,7 @@
             // docum
             // 
             this.docum.BackColor = System.Drawing.Color.Transparent;
+            this.docum.BorderRadius = 5;
             this.docum.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.docum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.docum.FillColor = System.Drawing.SystemColors.Control;
@@ -394,6 +404,7 @@
             // 
             // numDoc
             // 
+            this.numDoc.BorderRadius = 5;
             this.numDoc.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.numDoc.DefaultText = "";
             this.numDoc.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -417,6 +428,7 @@
             // 
             // nuit
             // 
+            this.nuit.BorderRadius = 5;
             this.nuit.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nuit.DefaultText = "";
             this.nuit.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -462,6 +474,7 @@
             // 
             // celular
             // 
+            this.celular.BorderRadius = 5;
             this.celular.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.celular.DefaultText = "";
             this.celular.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -508,6 +521,7 @@
             // genero
             // 
             this.genero.BackColor = System.Drawing.Color.Transparent;
+            this.genero.BorderRadius = 5;
             this.genero.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.genero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.genero.FillColor = System.Drawing.SystemColors.Control;
@@ -526,11 +540,12 @@
             // 
             // inscrever
             // 
+            this.inscrever.BorderRadius = 5;
             this.inscrever.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.inscrever.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.inscrever.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.inscrever.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.inscrever.FillColor = System.Drawing.Color.ForestGreen;
+            this.inscrever.FillColor = System.Drawing.Color.RoyalBlue;
             this.inscrever.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inscrever.ForeColor = System.Drawing.Color.White;
             this.inscrever.Location = new System.Drawing.Point(454, 584);
@@ -543,6 +558,7 @@
             // curso
             // 
             this.curso.BackColor = System.Drawing.Color.Transparent;
+            this.curso.BorderRadius = 5;
             this.curso.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.curso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.curso.FillColor = System.Drawing.SystemColors.Control;
@@ -566,7 +582,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(20)))), ((int)(((byte)(107)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(57)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1080, 659);
             this.Controls.Add(this.curso);
             this.Controls.Add(this.inscrever);

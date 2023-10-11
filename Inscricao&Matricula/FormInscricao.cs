@@ -18,6 +18,40 @@ namespace Inscricao_Matricula
 
         private void inscrever_Click(object sender, EventArgs e)
         {
+            // Validação para garantir que nenhum dos campos obrigatórios esteja em branco
+            if (string.IsNullOrWhiteSpace(facul.Text) ||
+                string.IsNullOrWhiteSpace(grauc.Text) ||
+                string.IsNullOrWhiteSpace(turno.Text) ||
+                string.IsNullOrWhiteSpace(apelido.Text) ||
+                string.IsNullOrWhiteSpace(nome.Text) ||
+                string.IsNullOrWhiteSpace(dataNasc.Text) ||
+                string.IsNullOrWhiteSpace(paisNasc.Text) ||
+                string.IsNullOrWhiteSpace(provNasc.Text) ||
+                string.IsNullOrWhiteSpace(localNasc.Text) ||
+                string.IsNullOrWhiteSpace(docum.Text) ||
+                string.IsNullOrWhiteSpace(numDoc.Text) ||
+                string.IsNullOrWhiteSpace(nuit.Text) ||
+                string.IsNullOrWhiteSpace(genero.Text) ||
+                string.IsNullOrWhiteSpace(celular.Text) ||
+                string.IsNullOrWhiteSpace(curso.Text))
+            {
+                MessageBox.Show("Preencha todos os campos obrigatórios antes de continuar.");
+                return; // Sai do evento se a validação falhar.
+            }
+
+            if (!int.TryParse(nuit.Text, out _))
+            {
+                MessageBox.Show("O campo Nuit deve conter apenas números.");
+                return; // Sai do evento se a validação falhar.
+            }
+
+            // Validação para garantir que "Celular" contenha apenas números
+            if (!int.TryParse(celular.Text, out _))
+            {
+                MessageBox.Show("O campo Celular deve conter apenas números.");
+                return; // Sai do evento se a validação falhar.
+            }
+
             try
             {
                 string cursoSelecionado = curso.SelectedItem.ToString();
@@ -76,5 +110,6 @@ namespace Inscricao_Matricula
                 MessageBox.Show("Ocorreu um erro ao tentar realizar a inscrição.\nDetalhes: " + ex.Message + "\nCódigo de erro: " + ex.ErrorCode);
             }
         }
+
     }
 }

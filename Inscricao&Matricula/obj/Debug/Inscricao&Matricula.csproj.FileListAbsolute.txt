@@ -44,3 +44,4 @@ A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\bin\Debug\Microsof
 A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\bin\Debug\MySql.Data.xml
 A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\bin\Debug\System.IO.Pipelines.xml
 A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\obj\Debug\Inscricao_Matricula.FormInscricao.resources
+A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\obj\Debug\Inscricao_Matricula.ListaEstudantes.resources
