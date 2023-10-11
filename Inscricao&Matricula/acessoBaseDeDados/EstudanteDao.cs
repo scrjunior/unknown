@@ -1,6 +1,7 @@
 ﻿using Inscricao_Matricula.bean;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 
 namespace Inscricao_Matricula.acessoBaseDeDados
 {
@@ -52,6 +53,41 @@ namespace Inscricao_Matricula.acessoBaseDeDados
             }
         }
 
-        
+        public List<Estudante> SelecionarEstudantesComCurso()
+        {
+            List<Estudante> listaEstudantes = new List<Estudante>();
+
+            using (var connection = conexao.AbrirConexao())
+            {
+                string query = "SELECT e.EstudanteID, e.Nome, e.Apelido, e.Grau, e.CursoID, c.NomeCurso AS NomeCurso, e.Faculdade " +
+                               "FROM estudantes e " +
+                               "INNER JOIN cursos c ON e.CursoID = c.CursoID";
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Estudante estudante = new Estudante
+                        {
+                            EstudanteID = reader.GetInt32("EstudanteID"), // Correção aqui
+                            Nome = reader.GetString("Nome"),
+                            Apelido = reader.GetString("Apelido"),
+                            Grau = reader.GetString("Grau"),
+                            CursoID = reader.GetInt32("CursoID"),
+                            NomeCurso = reader.GetString("NomeCurso"),
+                            Faculdade = reader.GetString("Faculdade")
+                        };
+
+                        listaEstudantes.Add(estudante);
+                    }
+                }
+            }
+
+            return listaEstudantes;
+        }
+
+
     }
 }
