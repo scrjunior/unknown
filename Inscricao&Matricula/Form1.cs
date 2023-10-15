@@ -25,17 +25,17 @@ namespace Inscricao_Matricula
             listaEstudantes.TopLevel = false;
             PainelControl.Controls.Add(listaEstudantes);
 
-            // Oculte o FormInscricao no construtor
+            
             formInscricao.Hide();
         }
 
 
         private void inscricao_Click(object sender, EventArgs e)
         {
-            // Certifique-se de que o FormListaEstudantes também está oculto
+            
             listaEstudantes.Hide();
 
-            // Exiba o FormInscricao
+           
             formInscricao.Show();
             formInscricao.Dock = DockStyle.Fill;
         }
@@ -52,12 +52,15 @@ namespace Inscricao_Matricula
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            // Certifique-se de que o FormInscricao também está oculto
+         
             formInscricao.Hide();
 
-            // Exiba o FormListaEstudantes
+            //botão que carrega o form que contem tabelas
+
+            
             listaEstudantes.Show();
             listaEstudantes.Dock = DockStyle.Fill;
+            listaEstudantes.PreencherTabela();
         }
     }
 }

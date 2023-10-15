@@ -45,3 +45,7 @@ A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\bin\Debug\MySql.Da
 A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\bin\Debug\System.IO.Pipelines.xml
 A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\obj\Debug\Inscricao_Matricula.FormInscricao.resources
 A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\obj\Debug\Inscricao_Matricula.ListaEstudantes.resources
+A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\bin\Debug\MaterialSkin.dll
+A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\bin\Debug\ObjectListView.dll
+A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\bin\Debug\ObjectListView.xml
+A:\Programa_Matricula\Inscricao&Matricula\Inscricao&Matricula\obj\Debug\Inscricao_Matricula.DetalhesForm.resources
