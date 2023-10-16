@@ -46,11 +46,45 @@ namespace Inscricao_Matricula.acessoBaseDeDados
                 cmd.Parameters.AddWithValue("@Celular", estudante.Celular);
                 cmd.Parameters.AddWithValue("@CursoID", cursoID);
 
-                int estudanteID = Convert.ToInt32(cmd.ExecuteScalar());
-
-                
+                int estudanteID = Convert.ToInt32(cmd.ExecuteScalar()); 
                 
             }
+        }
+
+        public List<EstudanteMatriculado> SelecionarEstudantesMatriculados()
+        {
+            List<EstudanteMatriculado> listaEstudantesMatriculados = new List<EstudanteMatriculado>();
+
+            using (var connection = conexao.AbrirConexao())
+            {
+                string query = @"SELECT e.EstudanteID AS Codigo, e.Nome, e.Apelido, c.NomeCurso AS Curso, e.Faculdade, m.MatriculaID AS IDMatricula, m.AnoMatricula AS Ano
+                                FROM estudantes e
+                                INNER JOIN matriculas m ON e.EstudanteID = m.EstudanteID
+                                INNER JOIN cursos c ON e.CursoID = c.CursoID";
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        EstudanteMatriculado estudanteMatriculado = new EstudanteMatriculado
+                        {
+                            Codigo = reader.GetInt32("Codigo"),
+                            Nome = reader.GetString("Nome"),
+                            Apelido = reader.GetString("Apelido"),
+                            Curso = reader.GetString("Curso"),
+                            Faculdade = reader.GetString("Faculdade"),
+                            IDMatricula = reader.GetInt32("IDMatricula"),
+                            Ano = reader.GetInt32("Ano")
+                        };
+
+                        listaEstudantesMatriculados.Add(estudanteMatriculado);
+                    }
+                }
+            }
+
+            return listaEstudantesMatriculados;
         }
 
         public List<Estudante> SelecionarEstudantesComCurso()

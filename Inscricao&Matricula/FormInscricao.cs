@@ -39,7 +39,7 @@ namespace Inscricao_Matricula
                 return; // Sai do evento se a validação falhar.
             }
 
-            if (!int.TryParse(nuit.Text, out _))
+            if (!long.TryParse(nuit.Text, out _))
             {
                 MessageBox.Show("O campo Nuit deve conter apenas números.");
                 return; // Sai do evento se a validação falhar.

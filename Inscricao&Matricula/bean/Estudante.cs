@@ -40,5 +40,15 @@ namespace Inscricao_Matricula.bean
         public int CursoID { get; set; }
         public int AnoMatricula { get; set; }
     }
+    public class EstudanteMatriculado
+    {
+        public int Codigo { get; set; }
+        public string Nome { get; set; }
+        public string Apelido { get; set; }
+        public string Curso { get; set; }
+        public string Faculdade { get; set; }
+        public int IDMatricula { get; set; }
+        public int Ano { get; set; }
+    }
 
 }
