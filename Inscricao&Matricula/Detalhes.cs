@@ -2,14 +2,29 @@
 using Inscricao_Matricula.bean;
 using MySql.Data.MySqlClient;
 using System;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using System.Diagnostics;
+
+
+
+
+
 
 namespace Inscricao_Matricula
 {
     public partial class DetalhesForm : Form
     {
         private Estudante student;
-
+        
         private Conexao conexao;
         private EstudanteDao estudanteDao;
         private ListaEstudantes listaEstudantes;
@@ -21,109 +36,109 @@ namespace Inscricao_Matricula
             this.student = student;
             conexao = new Conexao();
 
-
+            
 
             this.listaEstudantes = listaEstudantes;
-            facul.Text = student.Faculdade;
-            grauc.Text = student.Grau;
-            turno.Text = student.Turno;
-            nome.Text = student.Nome;
-            apelido.Text = student.Apelido;
-            paisNasc.Text = student.PaisNascimento;
-            dataNasc.Text = student.DataNascimento.ToString("yyyy-MM-dd");
-            provNasc.Text = student.ProvinciaNascimento;
-            localNasc.Text = student.LocalNascimento;
-            docum.Text = student.TipoDocumento;
-            numDoc.Text = student.NumeroDocumento;
-            nuit.Text = student.Nuit;
-            genero.Text = student.Genero;
-            celular.Text = student.Celular;
-            curso.Text = student.NomeCurso;
-            
+            dataGridView.CellFormatting += dataGridView_CellFormatting;
+
+            // Chame a função para preencher o DataGridView com os detalhes do estudante.
+            PreencherDataGridView();
         }
 
-        private void atualizar_Click(object sender, EventArgs e)
+
+
+        private void PreencherDataGridView()
         {
-            if (student == null)
+            // Defina o DataGridView como somente leitura para exibição de dados.
+            dataGridView.ReadOnly = true;
+
+            // Adicione as colunas necessárias ao DataGridView.
+            dataGridView.Columns.Add("", "");
+            dataGridView.Columns.Add("", "");
+
+            // Adicione as linhas com as propriedades e valores do estudante.
+            dataGridView.Rows.Add("Faculdade", student.Faculdade);
+            dataGridView.Rows.Add("Grau", student.Grau);
+            dataGridView.Rows.Add("Turno", student.Turno);
+            dataGridView.Rows.Add("Codigo", student.EstudanteID);
+            dataGridView.Rows.Add("Nome", student.Nome);
+            dataGridView.Rows.Add("Apelido", student.Apelido);
+            dataGridView.Rows.Add("País de Nascimento", student.PaisNascimento);
+            dataGridView.Rows.Add("Data de Nascimento", student.DataNascimento.ToString("yyyy-MM-dd"));
+            dataGridView.Rows.Add("Província de Nascimento", student.ProvinciaNascimento);
+            dataGridView.Rows.Add("Local de Nascimento", student.LocalNascimento);
+            dataGridView.Rows.Add("Tipo de Documento", student.TipoDocumento);
+            dataGridView.Rows.Add("Número de Documento", student.NumeroDocumento);
+            dataGridView.Rows.Add("Nuit", student.Nuit);
+            dataGridView.Rows.Add("Gênero", student.Genero);
+            dataGridView.Rows.Add("Celular", student.Celular);
+            dataGridView.Rows.Add("Curso", student.NomeCurso);
+
+            // Ajuste as propriedades de exibição do DataGridView, se necessário.
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView.AutoResizeColumns();
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Verifique se a célula é da coluna "Faculdade" (ou qualquer outra que você queira destacar).
+            if (e.ColumnIndex == 0) // 0 é o índice da coluna "Faculdade"
             {
-                MessageBox.Show("Student information is not available.");
-                return;
+                // Defina um estilo diferente para a célula da coluna "Faculdade".
+                e.CellStyle.Font = new Font("Arial", 13, FontStyle.Bold); // Use a fonte Arial, tamanho 14 e negrito
+                e.CellStyle.ForeColor = Color.Black;
+
+                // Você também pode ajustar outras propriedades de estilo, como fundo, bordas, etc., conforme necessário.
             }
-
-            try
+            else
             {
-                string updatedCursoNome = curso.Text; // Get the updated course name.
+                // Defina o estilo para outras colunas (valores).
+                e.CellStyle.Font = new Font("Arial", 12); // Use a fonte Arial, tamanho 12 (ou outro tamanho desejado)
+                e.CellStyle.ForeColor = Color.Black; // Pode ajustar a cor da fonte conforme necessário
+            }
+        }
 
-                // Consulta SQL to get the CursoID for the updated course name.
-                string queryObterCursoID = "SELECT CursoID FROM cursos WHERE NomeCurso = @NomeCurso";
 
-                using (var connection = conexao.AbrirConexao())
+
+        private void Imprimir_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "PDF Files|*.pdf";
+                saveFileDialog.Title = "Save PDF File";
+                saveFileDialog.FileName = "DataGridViewContent.pdf"; // Default file name
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    MySqlCommand cmdObterCursoID = new MySqlCommand(queryObterCursoID, connection);
-                    cmdObterCursoID.Parameters.AddWithValue("@NomeCurso", updatedCursoNome);
+                    // Create a PDF document
+                    PdfSharp.Pdf.PdfDocument pdfDocument = new PdfSharp.Pdf.PdfDocument();
+                    PdfSharp.Pdf.PdfPage page = pdfDocument.AddPage();
+                    XGraphics gfx = XGraphics.FromPdfPage(page);
+                    XFont font = new XFont("Arial", 12);
 
-                    int cursoIDSelecionado = Convert.ToInt32(cmdObterCursoID.ExecuteScalar());
+                    int y = 20; // Initial Y position for text
 
-                    if (cursoIDSelecionado > 0)
+                    // Loop through the DataGridView rows and add their content to the PDF
+                    foreach (DataGridViewRow row in dataGridView.Rows)
                     {
-                        string updatedFacul = facul.Text;
-                        string updatedGrau = grauc.Text;
-                        string updatedTurno = turno.Text;
-                        string updatedApelido = apelido.Text;
-                        string updatedNome = nome.Text;
-                        DateTime updatedDataNascimento = Convert.ToDateTime(dataNasc.Text);
-                        string updatedPaisNascimento = paisNasc.Text;
-                        string updatedProvinciaNascimento = provNasc.Text;
-                        string updatedLocalNascimento = localNasc.Text;
-                        string updatedTipoDocumento = docum.Text;
-                        string updatedNumeroDocumento = numDoc.Text;
-                        string updatedNuit = nuit.Text;
-                        string updatedGenero = genero.Text;
-                        string updatedCelular = celular.Text;
-
-                        // Create an Estudante object with the updated information
-                        Estudante updatedStudent = new Estudante
-                        {
-                            EstudanteID = student.EstudanteID,
-                            Faculdade = updatedFacul,
-                            Grau = updatedGrau,
-                            Turno = updatedTurno,
-                            Apelido = updatedApelido,
-                            Nome = updatedNome,
-                            DataNascimento = updatedDataNascimento,
-                            PaisNascimento = updatedPaisNascimento,
-                            ProvinciaNascimento = updatedProvinciaNascimento,
-                            LocalNascimento = updatedLocalNascimento,
-                            TipoDocumento = updatedTipoDocumento,
-                            NumeroDocumento = updatedNumeroDocumento,
-                            Nuit = updatedNuit,
-                            Genero = updatedGenero,
-                            Celular = updatedCelular,
-                            CursoID = cursoIDSelecionado // Use the updated CursoID.
-                        };
-
-                        // Call the update method in your EstudanteDao to update the student's information in the database
-                        estudanteDao.AtualizarEstudante(updatedStudent);
-
-                        listaEstudantes.PreencherTabela();
-
-                        MessageBox.Show("Autalização realizada com sucesso!");
-                        this.Close();
-                        
+                        string column1 = row.Cells[0].Value?.ToString() ?? "";
+                        string column2 = row.Cells[1].Value?.ToString() ?? "";
+                        gfx.DrawString($"{column1}: {column2}", font, XBrushes.Black, new XRect(20, y, page.Width, page.Height), XStringFormats.TopLeft);
+                        y += 20; // Increase Y position for the next line
                     }
-                    else
-                    {
-                        MessageBox.Show("O curso selecionado não é válido. Por favor, escolha um curso válido.");
-                    }
+
+                    // Save the PDF to the selected location
+                    pdfDocument.Save(saveFileDialog.FileName);
+
+                    // Notify the user that the PDF was created and offer to open it
+                    MessageBox.Show($"PDF created successfully at: {saveFileDialog.FileName}", "PDF Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Open the saved PDF file
+                    Process.Start(saveFileDialog.FileName);
                 }
             }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Erro MySQL: " + ex.Message);
-                Console.WriteLine("Código de erro: " + ex.ErrorCode);
-                MessageBox.Show("Ocorreu um erro ao tentar realizar a atualização.\nDetalhes: " + ex.Message + "\nCódigo de erro: " + ex.ErrorCode);
-            }
         }
+
 
 
 
@@ -131,5 +146,23 @@ namespace Inscricao_Matricula
         {
             this.Close();
         }
+
+        private void nome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void facul_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
     }
 }

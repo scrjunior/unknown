@@ -31,6 +31,7 @@ namespace Inscricao_Matricula.bean
         public string Genero { get; set; }
         public string Celular { get; set; }
         public int CursoID { get; set; }
+        public string Matricula { get; set; }
     }
 
     public class Matricula

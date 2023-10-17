@@ -30,25 +30,26 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.campo = new Guna.UI2.WinForms.Guna2TextBox();
             this.EstudanteID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apelido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Grau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CursoID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Faculdade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalhes = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Ação = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Matricula = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.atualiza = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.campo = new Guna.UI2.WinForms.Guna2TextBox();
+            this.Matricular = new Guna.UI2.WinForms.Guna2Button();
+            this.Ação = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,36 +94,36 @@
             this.Grau,
             this.CursoID,
             this.Faculdade,
+            this.Matricula,
             this.Detalhes,
-            this.Ação,
-            this.Matricula});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(139)))), ((int)(((byte)(205)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
+            this.atualiza});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(139)))), ((int)(((byte)(205)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(201)))), ((int)(((byte)(231)))));
             this.guna2DataGridView1.Location = new System.Drawing.Point(52, 206);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Gadugi", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Gadugi", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.guna2DataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.guna2DataGridView1.RowHeadersVisible = false;
             this.guna2DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Gadugi", 14.25F);
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Gadugi", 14.25F);
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.guna2DataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.guna2DataGridView1.RowTemplate.Height = 40;
@@ -151,28 +152,7 @@
             this.guna2DataGridView1.ThemeStyle.RowsStyle.Height = 40;
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(139)))), ((int)(((byte)(205)))));
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // campo
-            // 
-            this.campo.BorderRadius = 2;
-            this.campo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.campo.DefaultText = "";
-            this.campo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.campo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.campo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.campo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.campo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.campo.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.campo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.campo.Location = new System.Drawing.Point(55, 123);
-            this.campo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.campo.Name = "campo";
-            this.campo.PasswordChar = '\0';
-            this.campo.PlaceholderText = "Buscar Estudante";
-            this.campo.SelectedText = "";
-            this.campo.Size = new System.Drawing.Size(288, 38);
-            this.campo.TabIndex = 1;
-            this.campo.TextChanged += new System.EventHandler(this.campo_TextChanged);
+            this.guna2DataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.guna2DataGridView1_CellContentClick);
             // 
             // EstudanteID
             // 
@@ -215,6 +195,12 @@
             this.Faculdade.Name = "Faculdade";
             this.Faculdade.ReadOnly = true;
             // 
+            // Matricula
+            // 
+            this.Matricula.HeaderText = "Estado";
+            this.Matricula.Name = "Matricula";
+            this.Matricula.ReadOnly = true;
+            // 
             // Detalhes
             // 
             this.Detalhes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -230,27 +216,71 @@
             this.Detalhes.UseColumnTextForButtonValue = true;
             this.Detalhes.Width = 80;
             // 
+            // atualiza
+            // 
+            this.atualiza.HeaderText = "Acção";
+            this.atualiza.Name = "atualiza";
+            this.atualiza.ReadOnly = true;
+            this.atualiza.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.atualiza.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.atualiza.Text = "Atualizar";
+            this.atualiza.UseColumnTextForButtonValue = true;
+            // 
+            // campo
+            // 
+            this.campo.BorderRadius = 2;
+            this.campo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.campo.DefaultText = "";
+            this.campo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.campo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.campo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.campo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.campo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.campo.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.campo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.campo.Location = new System.Drawing.Point(55, 123);
+            this.campo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.campo.Name = "campo";
+            this.campo.PasswordChar = '\0';
+            this.campo.PlaceholderText = "Buscar Estudante";
+            this.campo.SelectedText = "";
+            this.campo.Size = new System.Drawing.Size(288, 38);
+            this.campo.TabIndex = 1;
+            this.campo.TextChanged += new System.EventHandler(this.campo_TextChanged);
+            // 
+            // Matricular
+            // 
+            this.Matricular.BorderRadius = 5;
+            this.Matricular.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Matricular.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Matricular.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Matricular.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Matricular.FillColor = System.Drawing.Color.RoyalBlue;
+            this.Matricular.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Matricular.ForeColor = System.Drawing.Color.White;
+            this.Matricular.Location = new System.Drawing.Point(802, 144);
+            this.Matricular.Name = "Matricular";
+            this.Matricular.Size = new System.Drawing.Size(130, 45);
+            this.Matricular.TabIndex = 36;
+            this.Matricular.Text = "Matricular";
+            this.Matricular.Click += new System.EventHandler(this.Matricula_Click);
+            // 
             // Ação
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ação.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Ação.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Ação.HeaderText = "Ação";
+            this.Ação.BorderRadius = 5;
+            this.Ação.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Ação.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Ação.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Ação.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Ação.FillColor = System.Drawing.Color.RoyalBlue;
+            this.Ação.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ação.ForeColor = System.Drawing.Color.White;
+            this.Ação.Location = new System.Drawing.Point(938, 144);
             this.Ação.Name = "Ação";
-            this.Ação.ReadOnly = true;
-            this.Ação.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Ação.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Ação.Size = new System.Drawing.Size(130, 45);
+            this.Ação.TabIndex = 37;
             this.Ação.Text = "Apagar";
-            this.Ação.UseColumnTextForButtonValue = true;
-            // 
-            // Matricula
-            // 
-            this.Matricula.HeaderText = "Matricula";
-            this.Matricula.Name = "Matricula";
-            this.Matricula.ReadOnly = true;
-            this.Matricula.Text = "Matricular";
-            this.Matricula.UseColumnTextForButtonValue = true;
+            this.Ação.Click += new System.EventHandler(this.Ação_Click);
             // 
             // ListaEstudantes
             // 
@@ -258,6 +288,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(57)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1080, 659);
+            this.Controls.Add(this.Ação);
+            this.Controls.Add(this.Matricular);
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.campo);
             this.Controls.Add(this.guna2HtmlLabel1);
@@ -275,14 +307,16 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2TextBox campo;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
+        private Guna.UI2.WinForms.Guna2Button Matricular;
+        private Guna.UI2.WinForms.Guna2Button Ação;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstudanteID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apelido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Grau;
         private System.Windows.Forms.DataGridViewTextBoxColumn CursoID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Faculdade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Matricula;
         private System.Windows.Forms.DataGridViewButtonColumn Detalhes;
-        private System.Windows.Forms.DataGridViewButtonColumn Ação;
-        private System.Windows.Forms.DataGridViewButtonColumn Matricula;
+        private System.Windows.Forms.DataGridViewButtonColumn atualiza;
     }
 }

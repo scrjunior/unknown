@@ -43,6 +43,8 @@
             this.Faculdade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatriculaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ano = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalhes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ação = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +78,9 @@
             this.CursoID,
             this.Faculdade,
             this.MatriculaID,
-            this.Ano});
+            this.Ano,
+            this.Detalhes,
+            this.Ação});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -132,7 +136,6 @@
             this.guna2DataGridView1.ThemeStyle.RowsStyle.Height = 40;
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(139)))), ((int)(((byte)(205)))));
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            
             // 
             // EstudanteID
             // 
@@ -181,6 +184,18 @@
             this.Ano.Name = "Ano";
             this.Ano.ReadOnly = true;
             // 
+            // Detalhes
+            // 
+            this.Detalhes.HeaderText = "Detalhes";
+            this.Detalhes.Name = "Detalhes";
+            this.Detalhes.ReadOnly = true;
+            // 
+            // Ação
+            // 
+            this.Ação.HeaderText = "Ação";
+            this.Ação.Name = "Ação";
+            this.Ação.ReadOnly = true;
+            // 
             // Matriculados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,5 +221,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Faculdade;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatriculaID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ano;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Detalhes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ação;
     }
 }

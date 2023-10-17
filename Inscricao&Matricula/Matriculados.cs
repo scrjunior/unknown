@@ -21,7 +21,7 @@ namespace Inscricao_Matricula
             PreencherTabela();
         }
 
-        private void PreencherTabela()
+        public void PreencherTabela()
         {
             guna2DataGridView1.Rows.Clear();
 

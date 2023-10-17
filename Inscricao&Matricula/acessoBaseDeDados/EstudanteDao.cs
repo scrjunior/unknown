@@ -93,9 +93,11 @@ namespace Inscricao_Matricula.acessoBaseDeDados
 
             using (var connection = conexao.AbrirConexao())
             {
-                string query = "SELECT e.EstudanteID, e.Nome, e.Apelido, e.Grau, e.CursoID, c.NomeCurso AS NomeCurso, e.Faculdade " +
+                string query = "SELECT e.EstudanteID, e.Nome, e.Apelido, e.Grau, e.CursoID, c.NomeCurso AS NomeCurso, e.Faculdade, " +
+                               "CASE WHEN m.EstudanteID IS NOT NULL THEN 'Matriculado' ELSE 'Não Matriculado' END AS Matricula " +
                                "FROM estudantes e " +
-                               "INNER JOIN cursos c ON e.CursoID = c.CursoID";
+                               "INNER JOIN cursos c ON e.CursoID = c.CursoID " +
+                               "LEFT JOIN matriculas m ON e.EstudanteID = m.EstudanteID";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
 
@@ -105,13 +107,14 @@ namespace Inscricao_Matricula.acessoBaseDeDados
                     {
                         Estudante estudante = new Estudante
                         {
-                            EstudanteID = reader.GetInt32("EstudanteID"), // Correção aqui
+                            EstudanteID = reader.GetInt32("EstudanteID"),
                             Nome = reader.GetString("Nome"),
                             Apelido = reader.GetString("Apelido"),
                             Grau = reader.GetString("Grau"),
                             CursoID = reader.GetInt32("CursoID"),
                             NomeCurso = reader.GetString("NomeCurso"),
-                            Faculdade = reader.GetString("Faculdade")
+                            Faculdade = reader.GetString("Faculdade"),
+                            Matricula = reader.GetString("Matricula") // Adicione esta linha para obter o status de matrícula
                         };
 
                         listaEstudantes.Add(estudante);
@@ -122,17 +125,51 @@ namespace Inscricao_Matricula.acessoBaseDeDados
             return listaEstudantes;
         }
 
+
         public void DeletarEstudante(int estudanteID)
         {
             using (var connection = conexao.AbrirConexao())
             {
-                string query = "DELETE FROM estudantes WHERE EstudanteID = @EstudanteID";
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@EstudanteID", estudanteID);
+                List<int> matriculaIDs = new List<int>();
 
-                cmd.ExecuteNonQuery();
+                // Em primeiro lugar, verifique se existem matrículas associadas e exclua-as
+                string consultaMatriculas = "SELECT MatriculaID FROM matriculas WHERE EstudanteID = @EstudanteID";
+                MySqlCommand cmdConsultaMatriculas = new MySqlCommand(consultaMatriculas, connection);
+                cmdConsultaMatriculas.Parameters.AddWithValue("@EstudanteID", estudanteID);
+
+                using (var reader = cmdConsultaMatriculas.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int matriculaID = reader.GetInt32("MatriculaID");
+                        matriculaIDs.Add(matriculaID);  // Armazene os IDs das matrículas
+
+                        // Não execute consultas dentro deste loop
+                    }
+                }  // Certifique-se de fechar o primeiro DataReader
+
+                // Agora, após fechar o primeiro DataReader, você pode executar as exclusões das matrículas
+                foreach (int matriculaID in matriculaIDs)
+                {
+                    string deleteMatriculaQuery = "DELETE FROM matriculas WHERE MatriculaID = @MatriculaID";
+                    MySqlCommand cmdDeleteMatricula = new MySqlCommand(deleteMatriculaQuery, connection);
+                    cmdDeleteMatricula.Parameters.AddWithValue("@MatriculaID", matriculaID);
+                    cmdDeleteMatricula.ExecuteNonQuery();
+                }
+
+                // Em seguida, exclua o estudante
+                string deleteEstudanteQuery = "DELETE FROM estudantes WHERE EstudanteID = @EstudanteID";
+                MySqlCommand cmdDeleteEstudante = new MySqlCommand(deleteEstudanteQuery, connection);
+                cmdDeleteEstudante.Parameters.AddWithValue("@EstudanteID", estudanteID);
+                cmdDeleteEstudante.ExecuteNonQuery();
             }
         }
+
+
+
+
+
+
 
         public Estudante SelecionarEstudantePorID(int estudanteID)
         {

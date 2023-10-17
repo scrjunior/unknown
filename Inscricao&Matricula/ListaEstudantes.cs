@@ -16,6 +16,7 @@ namespace Inscricao_Matricula
         private Conexao conexao;
         private EstudanteDao estudanteDao;
         private DetalhesForm detalhesForm = null;
+        private AtualizeForm atualizeForm = null;
         public ListaEstudantes()
         {
             InitializeComponent();
@@ -48,77 +49,51 @@ namespace Inscricao_Matricula
                         estudante.Apelido,
                         estudante.Grau,
                         estudante.NomeCurso, // Nome do curso
-                        estudante.Faculdade
+                        estudante.Faculdade,
+                        estudante.Matricula
                     );
                 }
-
-
-               
-
 
                 guna2DataGridView1.AutoResizeColumns();
             }
         }
 
+        private List<int> estudantesParaExcluir = new List<int>();
+        private bool deleting = false;
         private void DataGridViewButton_Click(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == guna2DataGridView1.Columns["Ação"].Index && e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < guna2DataGridView1.Rows.Count)
             {
-                int estudanteID = Convert.ToInt32(guna2DataGridView1.Rows[e.RowIndex].Cells["EstudanteID"].Value);
-
-                // Call the DAO method to delete the student
-                estudanteDao.DeletarEstudante(estudanteID);
-
-                // Remove the row from the DataGridView
-                guna2DataGridView1.Rows.RemoveAt(e.RowIndex);
-            }
-            else if (e.ColumnIndex == guna2DataGridView1.Columns["Detalhes"].Index && e.RowIndex >= 0)
-            {
-                int estudanteID = Convert.ToInt32(guna2DataGridView1.Rows[e.RowIndex].Cells["EstudanteID"].Value);
-
-                if (detalhesForm == null || detalhesForm.IsDisposed)
+            
+                if (e.ColumnIndex == guna2DataGridView1.Columns["Detalhes"].Index)
                 {
-                    // O formulário DetalhesForm ainda não está aberto ou foi fechado, então crie uma nova instância.
-                    Estudante student = estudanteDao.SelecionarEstudantePorID(estudanteID);
-                    detalhesForm = new DetalhesForm(student, this);
-                }
+                    int estudanteID = Convert.ToInt32(guna2DataGridView1.Rows[e.RowIndex].Cells["EstudanteID"].Value);
 
-                detalhesForm.Show();
-            }
-            else if (e.ColumnIndex == guna2DataGridView1.Columns["Matricula"].Index && e.RowIndex >= 0)
-            {
-                // Recuperar o nome do curso e o Código (que corresponde ao EstudanteID) da linha selecionada.
-                string nomeCurso = guna2DataGridView1.Rows[e.RowIndex].Cells["CursoID"].Value.ToString();
-                int codigoEstudante = Convert.ToInt32(guna2DataGridView1.Rows[e.RowIndex].Cells["EstudanteID"].Value);
-
-                // Lógica para obter o ID do curso a partir do nome do curso (você precisará implementar isso).
-                int cursoID = ObterIDDoCursoPeloNome(nomeCurso);
-
-                if (cursoID > 0)
-                {
-                    // Verificar se o estudante já está matriculado no curso.
-                    bool jaMatriculado = estudanteDao.VerificarMatriculaExistente(codigoEstudante, cursoID);
-
-                    if (!jaMatriculado)
+                    if (detalhesForm == null || detalhesForm.IsDisposed)
                     {
-                        // Lógica para matricular o estudante com os IDs do curso e Código (EstudanteID).
-                        estudanteDao.MatricularEstudante(codigoEstudante, cursoID, DateTime.Now.Year); // Use o ano atual como AnoMatricula
-                        MessageBox.Show("Estudante matriculado com sucesso!");
+                        // O formulário DetalhesForm ainda não está aberto ou foi fechado, então crie uma nova instância.
+                        Estudante student = estudanteDao.SelecionarEstudantePorID(estudanteID);
+                        detalhesForm = new DetalhesForm(student, this);
                     }
-                    else
-                    {
-                        MessageBox.Show("Este estudante já está matriculado neste curso. Não é permitido matricular o mesmo estudante duas vezes no mesmo curso.");
-                    }
-                }
-                else
+
+                    detalhesForm.Show();
+                }else if (e.ColumnIndex == guna2DataGridView1.Columns["atualiza"].Index)
                 {
-                    MessageBox.Show("O curso selecionado não é válido. Por favor, escolha um curso válido.");
+                    int estudanteID = Convert.ToInt32(guna2DataGridView1.Rows[e.RowIndex].Cells["EstudanteID"].Value);
+
+                    if (atualizeForm == null || atualizeForm.IsDisposed)
+                    {
+                        // O formulário DetalhesForm ainda não está aberto ou foi fechado, então crie uma nova instância.
+                        Estudante student = estudanteDao.SelecionarEstudantePorID(estudanteID);
+                        atualizeForm = new AtualizeForm(student, this);
+                    }
+
+                    atualizeForm.Show();
                 }
+
             }
-
-
-
         }
+
 
         public int ObterIDDoCursoPeloNome(string nomeCurso)
         {
@@ -156,6 +131,7 @@ namespace Inscricao_Matricula
                 estudante.Grau.ToLower().Contains(termoPesquisaLower) ||
                 estudante.NomeCurso.ToLower().Contains(termoPesquisaLower) ||
                 estudante.Faculdade.ToLower().Contains(termoPesquisaLower) ||
+                estudante.Matricula.ToLower().Contains(termoPesquisaLower) ||
                 estudante.EstudanteID.ToString().Contains(termoPesquisa) // Pesquisa também por números
             ).ToList();
 
@@ -169,7 +145,8 @@ namespace Inscricao_Matricula
                         estudante.Apelido,
                         estudante.Grau,
                         estudante.NomeCurso,
-                        estudante.Faculdade
+                        estudante.Faculdade,
+                        estudante.Matricula
                     );
                 }
 
@@ -183,5 +160,66 @@ namespace Inscricao_Matricula
         {
             //botão pesquisar
         }
+
+        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Matricula_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = guna2DataGridView1.SelectedRows[0];
+                int rowIndex = selectedRow.Index;
+                string nomeCurso = selectedRow.Cells["CursoID"].Value.ToString();
+                int codigoEstudante = Convert.ToInt32(selectedRow.Cells["EstudanteID"].Value);
+
+                // Lógica para obter o ID do curso a partir do nome do curso (você precisará implementar isso).
+                int cursoID = ObterIDDoCursoPeloNome(nomeCurso);
+
+                if (cursoID > 0)
+                {
+                    // Verificar se o estudante já está matriculado no curso.
+                    bool jaMatriculado = estudanteDao.VerificarMatriculaExistente(codigoEstudante, cursoID);
+
+                    if (!jaMatriculado)
+                    {
+                        // Lógica para matricular o estudante com os IDs do curso e Código (EstudanteID).
+                        estudanteDao.MatricularEstudante(codigoEstudante, cursoID, DateTime.Now.Year); // Use o ano atual como AnoMatricula
+                        MessageBox.Show("Estudante matriculado com sucesso!");
+                        PreencherTabela();
+                        // Após a matrícula bem-sucedida, atualize o texto na coluna "Matricula" para "Matriculado".
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Este estudante já está matriculado neste curso. Não é permitido matricular o mesmo estudante duas vezes no mesmo curso.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("O curso selecionado não é válido. Por favor, escolha um curso válido.");
+                }
+            }
+        }
+
+
+
+        private void Ação_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = guna2DataGridView1.SelectedRows[0];
+                int estudanteID = Convert.ToInt32(selectedRow.Cells["EstudanteID"].Value);
+
+                // Chame o método DAO para excluir o estudante
+                estudanteDao.DeletarEstudante(estudanteID);
+
+                // Remova a linha do DataGridView
+                guna2DataGridView1.Rows.Remove(selectedRow);
+            }
+        }
+
     }
 }

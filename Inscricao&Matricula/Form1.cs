@@ -55,10 +55,11 @@ namespace Inscricao_Matricula
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             listaEstudantes.Hide();
-
+            formInscricao.Hide();
 
             matriculados.Show();
             matriculados.Dock = DockStyle.Fill;
+            matriculados.PreencherTabela();
             seuControleDeTexto.Text = string.Empty;
             seuControleDeTexto2.Text = string.Empty;
         }
