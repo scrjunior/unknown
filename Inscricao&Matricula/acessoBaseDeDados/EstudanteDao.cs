@@ -114,7 +114,7 @@ namespace Inscricao_Matricula.acessoBaseDeDados
                             CursoID = reader.GetInt32("CursoID"),
                             NomeCurso = reader.GetString("NomeCurso"),
                             Faculdade = reader.GetString("Faculdade"),
-                            Matricula = reader.GetString("Matricula") // Adicione esta linha para obter o status de matrícula
+                            Matricula = reader.GetString("Matricula") 
                         };
 
                         listaEstudantes.Add(estudante);
@@ -132,7 +132,7 @@ namespace Inscricao_Matricula.acessoBaseDeDados
             {
                 List<int> matriculaIDs = new List<int>();
 
-                // Em primeiro lugar, verifique se existem matrículas associadas e exclua-as
+                
                 string consultaMatriculas = "SELECT MatriculaID FROM matriculas WHERE EstudanteID = @EstudanteID";
                 MySqlCommand cmdConsultaMatriculas = new MySqlCommand(consultaMatriculas, connection);
                 cmdConsultaMatriculas.Parameters.AddWithValue("@EstudanteID", estudanteID);
@@ -142,13 +142,13 @@ namespace Inscricao_Matricula.acessoBaseDeDados
                     while (reader.Read())
                     {
                         int matriculaID = reader.GetInt32("MatriculaID");
-                        matriculaIDs.Add(matriculaID);  // Armazene os IDs das matrículas
+                        matriculaIDs.Add(matriculaID);  
 
-                        // Não execute consultas dentro deste loop
+                        
                     }
-                }  // Certifique-se de fechar o primeiro DataReader
+                }  
 
-                // Agora, após fechar o primeiro DataReader, você pode executar as exclusões das matrículas
+                
                 foreach (int matriculaID in matriculaIDs)
                 {
                     string deleteMatriculaQuery = "DELETE FROM matriculas WHERE MatriculaID = @MatriculaID";
@@ -157,18 +157,13 @@ namespace Inscricao_Matricula.acessoBaseDeDados
                     cmdDeleteMatricula.ExecuteNonQuery();
                 }
 
-                // Em seguida, exclua o estudante
+                
                 string deleteEstudanteQuery = "DELETE FROM estudantes WHERE EstudanteID = @EstudanteID";
                 MySqlCommand cmdDeleteEstudante = new MySqlCommand(deleteEstudanteQuery, connection);
                 cmdDeleteEstudante.Parameters.AddWithValue("@EstudanteID", estudanteID);
                 cmdDeleteEstudante.ExecuteNonQuery();
             }
         }
-
-
-
-
-
 
 
         public Estudante SelecionarEstudantePorID(int estudanteID)
@@ -191,7 +186,7 @@ namespace Inscricao_Matricula.acessoBaseDeDados
                             Nome = reader.GetString("Nome"),
                             Apelido = reader.GetString("Apelido"),
                             CursoID = reader.GetInt32("CursoID"),
-                            NomeCurso = reader.GetString("NomeCurso"), // Populate the course name
+                            NomeCurso = reader.GetString("NomeCurso"), 
                             Turno = reader.GetString("Turno"),
                             PaisNascimento = reader.GetString("PaisNascimento"),
                             LocalNascimento = reader.GetString("LocalNascimento"),
@@ -201,14 +196,14 @@ namespace Inscricao_Matricula.acessoBaseDeDados
                             Nuit = reader.GetString("Nuit"),
                             Genero = reader.GetString("Genero"),
                             Celular = reader.GetString("Celular"),
-                            DataNascimento = reader.GetDateTime("DataNascimento") // Include DataNascimento
+                            DataNascimento = reader.GetDateTime("DataNascimento") 
                         };
 
                         return student;
                     }
                 }
 
-                return null; // Return null if the student is not found
+                return null; 
             }
         }
 
@@ -283,9 +278,25 @@ namespace Inscricao_Matricula.acessoBaseDeDados
 
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
 
-                return count > 0; // Retorna true se a matrícula existir, caso contrário, retorna false
+                return count > 0;
             }
         }
+
+        public void ApagarEstudanteDaMatricula(int idMatricula)
+        {
+            using (var connection = conexao.AbrirConexao())
+            {
+                
+                string query = "DELETE FROM matriculas WHERE MatriculaID = @MatriculaID";
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@MatriculaID", idMatricula);
+
+                
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
 
     }
 }

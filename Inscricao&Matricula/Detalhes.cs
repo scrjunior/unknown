@@ -7,9 +7,6 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
 using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using System.Diagnostics;
@@ -25,38 +22,49 @@ namespace Inscricao_Matricula
     {
         private Estudante student;
         
+
         private Conexao conexao;
         private EstudanteDao estudanteDao;
         private ListaEstudantes listaEstudantes;
+        private Matriculados matriculados;
 
         public DetalhesForm(Estudante student, ListaEstudantes listaEstudantes)
         {
             InitializeComponent();
             estudanteDao = new EstudanteDao();
             this.student = student;
-            conexao = new Conexao();
 
-            
+            conexao = new Conexao();
 
             this.listaEstudantes = listaEstudantes;
             dataGridView.CellFormatting += dataGridView_CellFormatting;
 
-            // Chame a função para preencher o DataGridView com os detalhes do estudante.
+            
             PreencherDataGridView();
         }
 
+        public DetalhesForm(Estudante student, Matriculados matriculados)
+        {
+            InitializeComponent();
+            estudanteDao = new EstudanteDao();
+            this.student = student;
+            conexao = new Conexao();
+            this.matriculados = matriculados;
 
+            
+            PreencherDataGridView();
+        }
 
         private void PreencherDataGridView()
         {
-            // Defina o DataGridView como somente leitura para exibição de dados.
+            
             dataGridView.ReadOnly = true;
 
-            // Adicione as colunas necessárias ao DataGridView.
+            
             dataGridView.Columns.Add("", "");
             dataGridView.Columns.Add("", "");
 
-            // Adicione as linhas com as propriedades e valores do estudante.
+            
             dataGridView.Rows.Add("Faculdade", student.Faculdade);
             dataGridView.Rows.Add("Grau", student.Grau);
             dataGridView.Rows.Add("Turno", student.Turno);
@@ -73,28 +81,32 @@ namespace Inscricao_Matricula
             dataGridView.Rows.Add("Gênero", student.Genero);
             dataGridView.Rows.Add("Celular", student.Celular);
             dataGridView.Rows.Add("Curso", student.NomeCurso);
+            
 
-            // Ajuste as propriedades de exibição do DataGridView, se necessário.
+
+            
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.AutoResizeColumns();
         }
 
+        
+
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Verifique se a célula é da coluna "Faculdade" (ou qualquer outra que você queira destacar).
-            if (e.ColumnIndex == 0) // 0 é o índice da coluna "Faculdade"
+            
+            if (e.ColumnIndex == 0)
             {
-                // Defina um estilo diferente para a célula da coluna "Faculdade".
-                e.CellStyle.Font = new Font("Arial", 13, FontStyle.Bold); // Use a fonte Arial, tamanho 14 e negrito
+                
+                e.CellStyle.Font = new Font("Arial", 13, FontStyle.Bold); 
                 e.CellStyle.ForeColor = Color.Black;
 
-                // Você também pode ajustar outras propriedades de estilo, como fundo, bordas, etc., conforme necessário.
+                
             }
             else
             {
-                // Defina o estilo para outras colunas (valores).
-                e.CellStyle.Font = new Font("Arial", 12); // Use a fonte Arial, tamanho 12 (ou outro tamanho desejado)
-                e.CellStyle.ForeColor = Color.Black; // Pode ajustar a cor da fonte conforme necessário
+                
+                e.CellStyle.Font = new Font("Arial", 12); 
+                e.CellStyle.ForeColor = Color.Black; 
             }
         }
 
@@ -105,35 +117,35 @@ namespace Inscricao_Matricula
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.Filter = "PDF Files|*.pdf";
-                saveFileDialog.Title = "Save PDF File";
-                saveFileDialog.FileName = "DataGridViewContent.pdf"; // Default file name
+                saveFileDialog.Title = "Guardar Ficheiro PDF";
+                saveFileDialog.FileName = "Detalhes do Estudante.pdf"; 
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Create a PDF document
+                    
                     PdfSharp.Pdf.PdfDocument pdfDocument = new PdfSharp.Pdf.PdfDocument();
                     PdfSharp.Pdf.PdfPage page = pdfDocument.AddPage();
                     XGraphics gfx = XGraphics.FromPdfPage(page);
                     XFont font = new XFont("Arial", 12);
 
-                    int y = 20; // Initial Y position for text
+                    int y = 20; 
 
-                    // Loop through the DataGridView rows and add their content to the PDF
+                    
                     foreach (DataGridViewRow row in dataGridView.Rows)
                     {
                         string column1 = row.Cells[0].Value?.ToString() ?? "";
                         string column2 = row.Cells[1].Value?.ToString() ?? "";
                         gfx.DrawString($"{column1}: {column2}", font, XBrushes.Black, new XRect(20, y, page.Width, page.Height), XStringFormats.TopLeft);
-                        y += 20; // Increase Y position for the next line
+                        y += 20; 
                     }
 
-                    // Save the PDF to the selected location
+                    
                     pdfDocument.Save(saveFileDialog.FileName);
 
-                    // Notify the user that the PDF was created and offer to open it
-                    MessageBox.Show($"PDF created successfully at: {saveFileDialog.FileName}", "PDF Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    MessageBox.Show($"PDF gerado com sucesso em: {saveFileDialog.FileName}", "PDF Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Open the saved PDF file
+                    
                     Process.Start(saveFileDialog.FileName);
                 }
             }

@@ -50,6 +50,7 @@ namespace Inscricao_Matricula.bean
         public string Faculdade { get; set; }
         public int IDMatricula { get; set; }
         public int Ano { get; set; }
+        public object AnoMatricula { get; internal set; }
     }
 
 }

@@ -29,11 +29,11 @@ namespace Inscricao_Matricula
 
         public void PreencherTabela()
         {
-            // Limpe a tabela antes de preenchê-la
+           
             guna2DataGridView1.Rows.Clear();
             guna2DataGridView1.CellContentClick += DataGridViewButton_Click;
 
-            // Aqui você deve buscar a lista de estudantes com informações de curso
+            
             var listaEstudantes = estudanteDao.SelecionarEstudantesComCurso();
 
             if (listaEstudantes != null && listaEstudantes.Count > 0)
@@ -42,13 +42,13 @@ namespace Inscricao_Matricula
                 {
                     
 
-                    // Adicione uma nova linha na tabela para cada estudante
+                    
                     guna2DataGridView1.Rows.Add(
                         estudante.EstudanteID,
                         estudante.Nome,
                         estudante.Apelido,
                         estudante.Grau,
-                        estudante.NomeCurso, // Nome do curso
+                        estudante.NomeCurso, 
                         estudante.Faculdade,
                         estudante.Matricula
                     );
@@ -71,7 +71,7 @@ namespace Inscricao_Matricula
 
                     if (detalhesForm == null || detalhesForm.IsDisposed)
                     {
-                        // O formulário DetalhesForm ainda não está aberto ou foi fechado, então crie uma nova instância.
+                        
                         Estudante student = estudanteDao.SelecionarEstudantePorID(estudanteID);
                         detalhesForm = new DetalhesForm(student, this);
                     }
@@ -83,7 +83,7 @@ namespace Inscricao_Matricula
 
                     if (atualizeForm == null || atualizeForm.IsDisposed)
                     {
-                        // O formulário DetalhesForm ainda não está aberto ou foi fechado, então crie uma nova instância.
+                        
                         Estudante student = estudanteDao.SelecionarEstudantePorID(estudanteID);
                         atualizeForm = new AtualizeForm(student, this);
                     }
@@ -108,7 +108,7 @@ namespace Inscricao_Matricula
                 {
                     return Convert.ToInt32(result);
                 }
-                return -1; // Retorne -1 se o curso não for encontrado.
+                return -1; 
             }
         }
 
@@ -123,7 +123,7 @@ namespace Inscricao_Matricula
         {
             guna2DataGridView1.Rows.Clear();
 
-            var termoPesquisaLower = termoPesquisa.ToLower(); // Converter o termo de pesquisa para minúsculas
+            var termoPesquisaLower = termoPesquisa.ToLower(); 
 
             var listaEstudantes = estudanteDao.SelecionarEstudantesComCurso().Where(estudante =>
                 estudante.Nome.ToLower().Contains(termoPesquisaLower) ||
@@ -132,7 +132,7 @@ namespace Inscricao_Matricula
                 estudante.NomeCurso.ToLower().Contains(termoPesquisaLower) ||
                 estudante.Faculdade.ToLower().Contains(termoPesquisaLower) ||
                 estudante.Matricula.ToLower().Contains(termoPesquisaLower) ||
-                estudante.EstudanteID.ToString().Contains(termoPesquisa) // Pesquisa também por números
+                estudante.EstudanteID.ToString().Contains(termoPesquisa) 
             ).ToList();
 
             if (listaEstudantes != null && listaEstudantes.Count > 0)
@@ -158,7 +158,7 @@ namespace Inscricao_Matricula
 
         private void pesquisar_Click(object sender, EventArgs e)
         {
-            //botão pesquisar
+            
         }
 
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -175,21 +175,21 @@ namespace Inscricao_Matricula
                 string nomeCurso = selectedRow.Cells["CursoID"].Value.ToString();
                 int codigoEstudante = Convert.ToInt32(selectedRow.Cells["EstudanteID"].Value);
 
-                // Lógica para obter o ID do curso a partir do nome do curso (você precisará implementar isso).
+                
                 int cursoID = ObterIDDoCursoPeloNome(nomeCurso);
 
                 if (cursoID > 0)
                 {
-                    // Verificar se o estudante já está matriculado no curso.
+                    
                     bool jaMatriculado = estudanteDao.VerificarMatriculaExistente(codigoEstudante, cursoID);
 
                     if (!jaMatriculado)
                     {
-                        // Lógica para matricular o estudante com os IDs do curso e Código (EstudanteID).
-                        estudanteDao.MatricularEstudante(codigoEstudante, cursoID, DateTime.Now.Year); // Use o ano atual como AnoMatricula
+                        
+                        estudanteDao.MatricularEstudante(codigoEstudante, cursoID, DateTime.Now.Year);
                         MessageBox.Show("Estudante matriculado com sucesso!");
                         PreencherTabela();
-                        // Após a matrícula bem-sucedida, atualize o texto na coluna "Matricula" para "Matriculado".
+                        
                         
                     }
                     else
@@ -213,10 +213,10 @@ namespace Inscricao_Matricula
                 DataGridViewRow selectedRow = guna2DataGridView1.SelectedRows[0];
                 int estudanteID = Convert.ToInt32(selectedRow.Cells["EstudanteID"].Value);
 
-                // Chame o método DAO para excluir o estudante
+                
                 estudanteDao.DeletarEstudante(estudanteID);
 
-                // Remova a linha do DataGridView
+                
                 guna2DataGridView1.Rows.Remove(selectedRow);
             }
         }

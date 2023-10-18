@@ -52,9 +52,9 @@ namespace Inscricao_Matricula
 
             try
             {
-                string updatedCursoNome = curso.Text; // Get the updated course name.
+                string updatedCursoNome = curso.Text; 
 
-                // Consulta SQL to get the CursoID for the updated course name.
+                
                 string queryObterCursoID = "SELECT CursoID FROM cursos WHERE NomeCurso = @NomeCurso";
 
                 using (var connection = conexao.AbrirConexao())
@@ -81,7 +81,7 @@ namespace Inscricao_Matricula
                         string updatedGenero = genero.Text;
                         string updatedCelular = celular.Text;
 
-                        // Create an Estudante object with the updated information
+                        
                         Estudante updatedStudent = new Estudante
                         {
                             EstudanteID = student.EstudanteID,
@@ -99,10 +99,10 @@ namespace Inscricao_Matricula
                             Nuit = updatedNuit,
                             Genero = updatedGenero,
                             Celular = updatedCelular,
-                            CursoID = cursoIDSelecionado // Use the updated CursoID.
+                            CursoID = cursoIDSelecionado 
                         };
 
-                        // Call the update method in your EstudanteDao to update the student's information in the database
+                       
                         estudanteDao.AtualizarEstudante(updatedStudent);
 
                         listaEstudantes.PreencherTabela();

@@ -36,9 +36,9 @@
             this.inscricao = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.PainelControl = new Guna.UI2.WinForms.Guna2Panel();
+            this.seuControleDeTexto2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.seuControleDeTexto = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.seuControleDeTexto2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel1.SuspendLayout();
             this.PainelControl.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
@@ -174,6 +174,17 @@
             this.PainelControl.TabIndex = 1;
             this.PainelControl.Paint += new System.Windows.Forms.PaintEventHandler(this.PainelControl_Paint);
             // 
+            // seuControleDeTexto2
+            // 
+            this.seuControleDeTexto2.BackColor = System.Drawing.Color.Transparent;
+            this.seuControleDeTexto2.Font = new System.Drawing.Font("Trebuchet MS", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seuControleDeTexto2.ForeColor = System.Drawing.Color.Snow;
+            this.seuControleDeTexto2.Location = new System.Drawing.Point(345, 359);
+            this.seuControleDeTexto2.Name = "seuControleDeTexto2";
+            this.seuControleDeTexto2.Size = new System.Drawing.Size(392, 48);
+            this.seuControleDeTexto2.TabIndex = 2;
+            this.seuControleDeTexto2.Text = "da Universidade Brabo";
+            // 
             // seuControleDeTexto
             // 
             this.seuControleDeTexto.BackColor = System.Drawing.Color.Transparent;
@@ -202,17 +213,6 @@
             this.guna2Panel3.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(50, 5, 5, 5);
             this.guna2Panel3.Size = new System.Drawing.Size(1080, 63);
             this.guna2Panel3.TabIndex = 2;
-            // 
-            // seuControleDeTexto2
-            // 
-            this.seuControleDeTexto2.BackColor = System.Drawing.Color.Transparent;
-            this.seuControleDeTexto2.Font = new System.Drawing.Font("Trebuchet MS", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seuControleDeTexto2.ForeColor = System.Drawing.Color.Snow;
-            this.seuControleDeTexto2.Location = new System.Drawing.Point(345, 359);
-            this.seuControleDeTexto2.Name = "seuControleDeTexto2";
-            this.seuControleDeTexto2.Size = new System.Drawing.Size(391, 48);
-            this.seuControleDeTexto2.TabIndex = 2;
-            this.seuControleDeTexto2.Text = "da Universidade Braba";
             // 
             // Form1
             // 

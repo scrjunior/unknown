@@ -45,9 +45,9 @@
             this.acessar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.acessar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.acessar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.acessar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(35)))), ((int)(((byte)(179)))));
+            this.acessar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(20)))), ((int)(((byte)(107)))));
             this.acessar.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acessar.ForeColor = System.Drawing.Color.Black;
+            this.acessar.ForeColor = System.Drawing.Color.White;
             this.acessar.Location = new System.Drawing.Point(127, 247);
             this.acessar.Name = "acessar";
             this.acessar.Size = new System.Drawing.Size(200, 45);
@@ -122,11 +122,11 @@
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(81, 12);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(131, 12);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(292, 29);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(193, 29);
             this.guna2HtmlLabel3.TabIndex = 5;
-            this.guna2HtmlLabel3.Text = "Universidade Brática Africana";
+            this.guna2HtmlLabel3.Text = "Universidade Brabo";
             // 
             // guna2ControlBox1
             // 
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(20)))), ((int)(((byte)(107)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(57)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(454, 328);
             this.Controls.Add(this.guna2ControlBox1);
             this.Controls.Add(this.guna2HtmlLabel3);

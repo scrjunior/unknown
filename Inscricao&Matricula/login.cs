@@ -20,7 +20,7 @@ namespace Inscricao_Matricula
             string usuario = Usuario.Text;
             string senha = Senha.Text;
 
-            // Consulta para verificar as credenciais no banco de dados
+            
             string query = "SELECT * FROM administrador WHERE Usuario = @usuario AND Senha = @senha";
 
             try
@@ -36,16 +36,16 @@ namespace Inscricao_Matricula
                         {
                             if (reader.HasRows)
                             {
-                                // Credenciais válidas, o usuário está autenticado
+                                
                                 MessageBox.Show("Login bem-sucedido!");
 
-                                // Mostra o Form1 após o login bem-sucedido
+                                
                                 MostrarForm1();
                             }
                             else if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(senha))
                             {
                                 MessageBox.Show("Por favor, preencha ambos os campos de usuário e senha.");
-                                return;  // Sai do método, pois as credenciais não estão preenchidas
+                                return;  
                             }
                             else
                             {
@@ -65,7 +65,7 @@ namespace Inscricao_Matricula
         {
             this.Hide();
             Form1 form1 = new Form1();
-            form1.Closed += (s, args) => this.Close(); // Fecha a aplicação ao fechar o Form1
+            form1.Closed += (s, args) => this.Close(); 
             form1.Show();
         }
 

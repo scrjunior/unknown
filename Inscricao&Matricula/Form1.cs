@@ -69,7 +69,7 @@ namespace Inscricao_Matricula
          
             formInscricao.Hide();
 
-            //botão que carrega o form que contem tabelas
+            
 
             
             listaEstudantes.Show();
